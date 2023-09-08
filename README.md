@@ -1,0 +1,1 @@
+# spring-snowflake-mongo
