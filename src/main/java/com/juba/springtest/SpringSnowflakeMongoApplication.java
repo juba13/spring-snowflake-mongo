@@ -1,4 +1,4 @@
-package com.juba.spring;
+package com.juba.springtest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
