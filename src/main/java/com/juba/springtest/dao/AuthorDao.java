@@ -13,6 +13,6 @@ import java.util.List;
  */
 public interface AuthorDao {
       List<Author> getAll();
-      Author getById(String authorId);
+      Author getById(String id);
       Author save(Author author);
 }
