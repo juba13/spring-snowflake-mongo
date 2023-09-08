@@ -6,27 +6,18 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import javax.validation.constraints.NotNull;
 
 @Document
 public class Book extends BaseEntity {
 
-    @NotNull
     private String title;
     private String description;
-    @NotNull
     private String ISBN;
-    
-    @NotNull
     private Genre genre;
-    
-    @NotNull
     private Date publicationDate;
     private String publisher;
     private String language;
     private Map<String, String> bookSettings = new HashMap<>();
-    
-    @NotNull
     private Author author;
 
     public String getTitle() {

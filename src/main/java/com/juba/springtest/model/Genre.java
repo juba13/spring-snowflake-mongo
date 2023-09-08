@@ -1,12 +1,10 @@
 package com.juba.springtest.model;
 
-import javax.validation.constraints.NotNull;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class Genre extends BaseEntity {
 
-    @NotNull
     private String name;
     private String description;
 
