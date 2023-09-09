@@ -10,11 +10,12 @@ import java.util.Date;
 
 public class BaseEntity {
 
+   
     @Id
     private String id;
 
     @CreatedBy
-    private long createdBy;
+    private String createdBy;
 
     @CreatedDate
     private Date createdOn;
@@ -23,8 +24,10 @@ public class BaseEntity {
     private Date updatedOn;
 
     @LastModifiedBy
-    private long updatedBy;
-
+    private String updatedBy;
+    
+    
+    
     public String getId() {
         return id;
     }
@@ -33,11 +36,11 @@ public class BaseEntity {
         this.id = id;
     }
 
-    public long getCreatedBy() {
+    public String getCreatedBy() {
         return createdBy;
     }
 
-    public void setCreatedBy(long createdBy) {
+    public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
     }
 
@@ -57,14 +60,24 @@ public class BaseEntity {
         this.updatedOn = updatedOn;
     }
 
-    public long getUpdatedBy() {
+    public String getUpdatedBy() {
         return updatedBy;
     }
 
-    public void setUpdatedBy(long updatedBy) {
+    public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
-
-   
+    
+    public void bindAccessInfo(User user){
+        if(getId() ==null){
+           createdOn = new Date();
+           createdBy = user.getId();
+        }else{
+           updatedOn = new Date();
+           updatedBy = user.getId();
+        }
+       
+    } 
 
 }
+

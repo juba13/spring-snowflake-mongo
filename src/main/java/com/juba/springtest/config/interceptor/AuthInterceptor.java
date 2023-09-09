@@ -30,7 +30,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                         .parseClaimsJws(request.getHeader("Authorization"))
                         .getBody();
                 request.setAttribute("SESSION_NO",claims.getId());
-                request.setAttribute("USER_ID",claims.getIssuer());
+                request.setAttribute("USER_NO",claims.getIssuer());
                 return true;
             } catch (Exception e) {
                 e.printStackTrace();
