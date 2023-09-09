@@ -2,20 +2,12 @@ package com.juba.springtest.controller;
 
 import com.juba.springtest.dao.UserDao;
 import com.juba.springtest.model.User;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import com.juba.springtest.service.AuthService;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,13 +22,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
         
-        @Value("${auth.token.key}")
-        private String tokenKey;
-        
+       
 	private final Logger LOG = LoggerFactory.getLogger(getClass());
 
         @Autowired
 	private final UserDao userDao = null;
+        
+        @Autowired
+	private final AuthService authService = null;
 
         @RequestMapping(value = "/login" , method = RequestMethod.POST)
         public ResponseEntity<String>  login(
@@ -46,18 +39,9 @@ public class AuthController {
                 
              User user = userDao.getByEmailAndPassword(email, password);
              if (user!=null) {
-                String token = Jwts.builder()
-                        .setId(UUID.randomUUID().toString())
-                        .setIssuer(String.valueOf(user.getId()))
-                        .setIssuedAt(Calendar.getInstance().getTime())
-                        .setAudience("mongo-snoflake")
-                        .setSubject("user-token")
-                        .setNotBefore(Calendar.getInstance().getTime())
-                        .signWith(SignatureAlgorithm.HS256, tokenKey)
-                        .compact();
-                
+                 String token = authService.getToken(user);
                   HttpHeaders headers = new HttpHeaders();
-                  headers.add("Authorization", token);
+                  headers.add("Authorization",token );
                 
                 return ResponseEntity.ok().headers(headers).body(token);
             } else {
