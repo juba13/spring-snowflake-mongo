@@ -4,15 +4,15 @@
  */
 package com.juba.springtest.dao;
 
-import com.juba.springtest.model.Author;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  *
  * @author mohammed
  */
-public interface AuthorDao {
-      List<Author> getAll();
-      Author getById(String id);
-      Author save(Author author);
+public interface AuthorDao<T> {
+      Iterator<T> getAll();
+      T getById(String id);
+      T save(T author);
 }

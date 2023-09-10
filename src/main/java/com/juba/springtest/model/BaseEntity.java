@@ -1,29 +1,32 @@
 package com.juba.springtest.model;
 
+import java.io.Serializable;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.LastModifiedBy;
-
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
-public class BaseEntity {
 
-   
+
+@MappedSuperclass
+public abstract class BaseEntity implements Serializable {
+
     @Id
-    private String id;
+    protected String id;
 
-    @CreatedBy
+    @Column(name = "created_by")
     private String createdBy;
-
-    @CreatedDate
+    @Column(name = "created_on")
     private Date createdOn;
-
-    @LastModifiedDate
+    @Column(name = "updated_on")
     private Date updatedOn;
-
-    @LastModifiedBy
+    @Column(name = "updated_by")
     private String updatedBy;
     
     
@@ -68,16 +71,6 @@ public class BaseEntity {
         this.updatedBy = updatedBy;
     }
     
-    public void bindAccessInfo(User user){
-        if(getId() ==null){
-           createdOn = new Date();
-           createdBy = user.getId();
-        }else{
-           updatedOn = new Date();
-           updatedBy = user.getId();
-        }
-       
-    } 
 
 }
 

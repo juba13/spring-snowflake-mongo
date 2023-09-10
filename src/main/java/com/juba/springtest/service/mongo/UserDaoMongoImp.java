@@ -1,4 +1,4 @@
-package com.juba.springtest.dao.mongo;
+package com.juba.springtest.service.mongo;
 
 import com.juba.springtest.dao.UserDao;
 import com.juba.springtest.model.User;

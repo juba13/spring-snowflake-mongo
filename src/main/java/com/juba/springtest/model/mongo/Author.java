@@ -1,6 +1,8 @@
-package com.juba.springtest.model;
+package com.juba.springtest.model.mongo;
 
+import com.juba.springtest.model.BaseEntity;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 
 @Document
 public class Author extends BaseEntity {
@@ -22,8 +24,4 @@ public class Author extends BaseEntity {
     public void setBiography(String biography) {
         this.biography = biography;
     }
-    
-    
-    
-    
 }
