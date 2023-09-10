@@ -1,4 +1,4 @@
-package com.juba.springtest.config.interceptor;
+package com.juba.springtest.setup;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

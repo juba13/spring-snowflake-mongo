@@ -1,6 +1,6 @@
 package com.juba.springtest;
 
-import com.juba.springtest.config.interceptor.AuthInterceptor;
+import com.juba.springtest.setup.AuthInterceptor;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,32 +38,6 @@ public class Application extends SpringBootServletInitializer implements WebMvcC
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Application.class);
-    }
-    
-    
-    // add Authorization field as header all swagger endpoint for token input
-
-    @Bean
-    public Docket lastApi() {
-         return new Docket(DocumentationType.SWAGGER_2).groupName("Restfulinpeace")
-                .apiInfo(apiInfo())
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build().globalOperationParameters(Arrays.asList(new ParameterBuilder()
-                .name("Authorization")
-                .modelRef(new ModelRef("string"))
-                .parameterType("header")
-                .required(true)
-                .build()));
-
-    }
-
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("mongo-snowflake-example")
-                .description(" ")
-                .version("2.0")
-                .build();
     }
     
     
