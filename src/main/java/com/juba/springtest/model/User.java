@@ -13,7 +13,7 @@ public class User extends BaseEntity {
     public User(){} 
 
     public User(String id,String name, String email) {
-        this.setId(id);
+        this.id=id;
         this.name = name;
         this.email = email;
     }

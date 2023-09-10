@@ -1,4 +1,4 @@
-package com.juba.springtest.dao;
+package com.juba.springtest.service;
 
 import com.juba.springtest.model.User;
 

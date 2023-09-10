@@ -1,6 +1,6 @@
 package com.juba.springtest.controller;
 
-import com.juba.springtest.dao.UserDao;
+import com.juba.springtest.service.UserDao;
 import com.juba.springtest.model.User;
 import com.juba.springtest.service.AuthService;
 import javax.servlet.http.HttpServletRequest;

@@ -24,64 +24,38 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration("swaggerConfig")
 public class SwaggerConfig {
     
+//    @Bean
+//    public Docket grSwagger() {
+//        return getDockel("GR-MODULE-API", "2.0.0", "com.pridesyserp.gr");
+//    }
+//    
+//     @Bean
+//    public Docket inSwagger() {
+//        return getDockel("IN-MODULE-API", "2.0.0", "com.pridesyserp.in");
+//    }
+      // add Authorization field as header all swagger endpoint for token input
+
     @Bean
-    public Docket grSwagger() {
-        return getDockel("GR-MODULE-API", "2.0.0", "com.pridesyserp.gr");
-    }
-    
-     @Bean
-    public Docket inSwagger() {
-        return getDockel("IN-MODULE-API", "2.0.0", "com.pridesyserp.in");
-    }
-    
-    @Bean
-    public Docket coreSwagger() {
-        return getDockel("CORE-MODULE-API", "2.0.0", "com.pridesyserp.core");
-    }
-    
-    @Bean
-    public Docket hrSwagger() {
-            return getDockel("HR-MODULE-API", "2.0.0", "com.pridesyserp.hr");
-    }
-    
-    
-    @Bean
-    public Docket slSwagger() {
-        return getDockel("SL-MODULE-API", "2.0.0", "com.pridesyserp.sl");
-    }
-    
-    @Bean
-    public Docket acSwagger() {
-        return getDockel("AC-MODULE-API", "2.0.0", "com.pridesyserp.ac");
-    }
-    
-    @Bean
-    public Docket rndSwagger() {
-        return getDockel("RND-MODULE-API", "2.0.0", "com.pridesyserp.rnd");
-    }
-    
-    private  Docket getDockel(String title,String version, String basePackage){
-       return getDockel(title, version, basePackage, "");
-    }
-    
-    private Docket getDockel(String title,String version, String basePackage,String description  ){
-               return new Docket(DocumentationType.SWAGGER_2).groupName(title)
-                .apiInfo(apiInfo(title, version, description))
+    public Docket lastApi() {
+         return new Docket(DocumentationType.SWAGGER_2).groupName("Restfulinpeace")
+                .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage(basePackage))
+                .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build().globalOperationParameters(Arrays.asList(new ParameterBuilder()
-                .name("TOKEN")
+                .name("Authorization")
                 .modelRef(new ModelRef("string"))
                 .parameterType("header")
                 .required(true)
-                .build())); 
+                .build()));
+
     }
 
-    private ApiInfo apiInfo(String title,String version, String description   ) {
-        return new ApiInfoBuilder().title(title)
-                .description(description)
-                .version(version)
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder().title("mongo-snowflake-example")
+                .description(" ")
+                .version("2.0")
                 .build();
     }
+    
 }

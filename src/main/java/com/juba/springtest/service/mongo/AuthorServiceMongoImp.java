@@ -1,6 +1,6 @@
 package com.juba.springtest.service.mongo;
 
-import com.juba.springtest.dao.AuthorDao;
+import com.juba.springtest.dto.AuthorDTO;
 import com.juba.springtest.model.mongo.Author;
 import com.juba.springtest.service.AuthService;
 import java.util.Date;
@@ -8,21 +8,23 @@ import java.util.Iterator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
-
+import com.juba.springtest.service.AuthorService;
+import java.util.List;
 
 
 @Repository
-public class AuthorDaoMongoImp implements AuthorDao<Author> {
+public class AuthorServiceMongoImp implements AuthorService<Author ,AuthorDTO> {
 
     @Autowired
     private MongoTemplate mongoTemplate;
+    
     
     @Autowired
     private final AuthService authService = null;
 
     @Override
-    public Iterator<Author> getAll() {
-        return mongoTemplate.findAll(Author.class).iterator();
+    public List<Author> getAll() {
+        return mongoTemplate.findAll(Author.class);
     }
 
     @Override
@@ -31,14 +33,11 @@ public class AuthorDaoMongoImp implements AuthorDao<Author> {
     }
 
     @Override
-    public Author save(Author author) {
-        if(author.getId() ==null){
-           author.setCreatedOn(new Date());
-           author.setCreatedBy(authService.getUserNo());
-        }else{
-           author.setUpdatedOn(new Date());
-           author.setUpdatedBy(authService.getUserNo());
-        }
+    public Author save(AuthorDTO authorDTO) {
+        Author author = new  Author();
+        author.setId(authorDTO.getId());
+        author.setAuhorName(authorDTO.getAuthorName());
+        author.bindAccessInfo(authService.getUser());
         mongoTemplate.save(author);
         return author;
     }

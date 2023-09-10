@@ -1,27 +1,21 @@
 package com.juba.springtest.model.mongo;
 
 import com.juba.springtest.model.BaseEntity;
+import javax.persistence.Column;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Document
 public class Author extends BaseEntity {
-    private String name;
-    private String biography;
+    @Column(name = "AUTHOR_NAME")
+    private String auhorName;
+    
 
-    public String getName() {
-        return name;
+    public String getAuhorName() {
+        return auhorName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getBiography() {
-        return biography;
-    }
-
-    public void setBiography(String biography) {
-        this.biography = biography;
+    public void setAuhorName(String auhorName) {
+        this.auhorName = auhorName;
     }
 }
