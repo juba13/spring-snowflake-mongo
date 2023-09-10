@@ -6,16 +6,28 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 
 @Document
-public class Author extends BaseEntity {
+public class Author extends BaseEntity{
     @Column(name = "AUTHOR_NAME")
-    private String auhorName;
+    private String authorName;
     
 
-    public String getAuhorName() {
-        return auhorName;
+    @Column(name = "AUTHOR_ADDRESS")
+    private String authorAddress;
+    
+    
+    public void setAuthorName(String authorName) {
+        this.authorName = authorName;
     }
 
-    public void setAuhorName(String auhorName) {
-        this.auhorName = auhorName;
+    public String getAuthorName() {
+        return authorName;
+    }   
+
+    public void setAuthorAddress(String authorAddress) {
+        this.authorAddress = authorAddress;
+    }
+
+    public String getAuthorAddress() {
+        return authorAddress;
     }
 }
