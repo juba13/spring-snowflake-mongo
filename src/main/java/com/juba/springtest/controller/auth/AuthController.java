@@ -1,4 +1,4 @@
-package com.juba.springtest.controller;
+package com.juba.springtest.controller.auth;
 
 import com.juba.springtest.service.UserDao;
 import com.juba.springtest.model.User;

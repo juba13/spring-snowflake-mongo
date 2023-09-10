@@ -1,4 +1,4 @@
-package com.juba.springtest.controller.snoflake;
+package com.juba.springtest.controller.snowflake;
 
 import com.juba.springtest.dto.AuthorCreateDTO;
 import com.juba.springtest.dto.AuthorUpdateDTO;
