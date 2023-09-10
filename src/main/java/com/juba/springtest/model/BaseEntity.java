@@ -67,15 +67,15 @@ public abstract class BaseEntity  {
         this.updatedBy = updatedBy;
     }
 
-    public void bindAccessInfo(User user){
-        if(id == null){
-           id= UUID.randomUUID().toString();
-           createdOn= new Date();
-           createdBy= user.getId();
-        }else{
-           updatedBy=user.getUpdatedBy();
-           updatedOn = new Date();
-        }
+    public void preCreate(User user){
+        id= UUID.randomUUID().toString();
+        createdOn= new Date();
+        createdBy= user.getId();
+    }
+    
+    public void preUpdate(User user){
+        updatedBy=user.getId();
+        updatedOn = new Date();
     }
 
 }

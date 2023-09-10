@@ -1,8 +1,9 @@
 package com.juba.springtest.controller.snoflake;
 
-import com.juba.springtest.dto.AuthorDTO;
+import com.juba.springtest.dto.AuthorCreateDTO;
+import com.juba.springtest.dto.AuthorUpdateDTO;
+import com.juba.springtest.dto.DTO;
 import com.juba.springtest.model.snowflake.Author;
-import java.util.Iterator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,12 +25,8 @@ public class AuthorControllerSnowflake {
 
         @Autowired
         @Qualifier("authorServiceSnowflakeImp") 
-        AuthorService<Author , AuthorDTO> service =null;
+        AuthorService<Author , DTO> service =null;
         
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public Author save(@RequestBody AuthorDTO author) {
-		return service.save(author);
-	}
         
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
 	public List<Author> getAll() {
@@ -39,6 +36,18 @@ public class AuthorControllerSnowflake {
 	@RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
 	public Author get(@PathVariable String id) {
 		return service.getById(id);
+	}
+        
+        
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public Author create(@RequestBody AuthorCreateDTO author) {
+		return service.create(author);
+	}
+
+        
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public Author update(@RequestBody AuthorUpdateDTO author) throws Exception {
+		return service.update(author);
 	}
 
 }

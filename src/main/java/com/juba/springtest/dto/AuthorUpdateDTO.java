@@ -1,10 +1,10 @@
 package com.juba.springtest.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class AuthorDTO  {
+public class AuthorUpdateDTO  implements DTO{
     private String id;
     private String authorName;
+    private String authorAddress;
 
     public void setId(String id) {
         this.id = id;
@@ -20,5 +20,13 @@ public class AuthorDTO  {
 
     public String getAuthorName() {
         return authorName;
+    }
+
+    public void setAuthorAddress(String authorAddress) {
+        this.authorAddress = authorAddress;
+    }
+
+    public String getAuthorAddress() {
+        return authorAddress;
     }
 }

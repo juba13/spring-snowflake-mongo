@@ -9,5 +9,6 @@ import java.util.List;
 public interface AuthorService<M,D> {
       List<M> getAll();
       M getById(String id);
-      M save(D author);
+      M create(D authorCreateDto);
+      M update(D authoUpdateDto) throws Exception;
 }
